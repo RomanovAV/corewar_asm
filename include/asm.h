@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/02 17:09:48 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/04 13:51:26 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,9 @@ typedef struct	s_champion
 	unsigned char	*byte_code;
 	size_t			code_size;
 }				t_champion;
+
+void		error(char *err, int type);
+void		process(char *str, int flag);
+
 
 #endif
