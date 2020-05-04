@@ -1,7 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asm.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/04 13:27:19 by dsandshr          #+#    #+#             */
+/*   Updated: 2020/05/04 13:27:20 by dsandshr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 int g_cur_line;
 int g_cur_col;
+
+void		error(char *err, int type)
+{
+	if (type)
+	{
+		ft_printf("%s [%d:%d]\n", err, g_cur_line, g_cur_col);
+		errno = EINVAL;
+	}
+	else
+		ft_printf("%s\n", err);
+	exit(errno);
+}
+
+static void	faq(void)
+{
+	ft_printf("Usage: asm [-df] [file]\n"
+			"\tif no -d flag specified asm will assemble file.s\n"
+			"\tuse -d for dissamble file.cor\n"
+			"\twith -f flag asm will output into current directory\n");
+	exit(1);
+}
+
+static int get_flag(char *str)
+{
+	int flag;
+
+	++str;
+	flag = 0;
+	while (*str)
+	{
+		if (*str == 'd')
+			flag |= F_DISASSEMBLE;
+		else if (*str == 'f')
+			flag |= F_OUTPUT_LOCAL;
+		else
+			faq();
+		str++;
+	}
+	return (flag);
+}
 
 int main(int ac, char **av)
 {
