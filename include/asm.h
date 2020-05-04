@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/04 13:51:26 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/04 14:13:21 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ typedef struct	s_champion
 
 void		error(char *err, int type);
 void		process(char *str, int flag);
-
+t_champion	*parse_file(int fd);
 
 #endif

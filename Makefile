@@ -6,7 +6,7 @@
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/02 17:13:09 by dsandshr          #+#    #+#              #
-#    Updated: 2020/05/02 17:21:43 by dsandshr         ###   ########.fr        #
+#    Updated: 2020/05/04 14:23:15 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ HEADERS_DIR := ./include $(LFT_DIR) $(LFT_PRINTF_DIR)/includes
 
 DIR_SRC := ./src
 
-SRC_ASM := asm.c
+SRC_ASM := asm.c\
+			parse_file.c\
+			process.c
 
 OBJ_ASM := $(SRC_ASM:.c=.o)
 
