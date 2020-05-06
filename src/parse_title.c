@@ -55,7 +55,7 @@ static void	skip_until_token(int fd)
 	char buf;
 
 	while (read(fd, &buf, 1) > 0)
-    {
+	{
 		if (buf == COMMENT_CHAR || buf == COMMENT_CHAR_ALT)
 		{
 			while (read(fd, &buf, 1) > 0 && buf != '\n')
@@ -66,7 +66,7 @@ static void	skip_until_token(int fd)
 			++g_cur_line;
 		else if (!IS_BLANK(buf))
 			break ;
-    }
+	}
 	lseek(fd, -1, SEEK_CUR);
 	if (errno)
 		error(strerror(errno), 0);
@@ -74,23 +74,23 @@ static void	skip_until_token(int fd)
 
 void		parse_title(t_champion *champ, int fd)
 {
-    warrior->name = NULL;
-	warrior->comment = NULL;
+	champ->name = NULL;
+	champ->comment = NULL;
 
-    while (!warrior->name || !warrior->comment)
+    while (!champ->name || !champ->comment)
 	{
 		skip_until_token(fd);
-		if (!warrior->name && check_token(NAME_CMD_STRING,
+		if (!champ->name && check_token(NAME_CMD_STRING,
 									sizeof(NAME_CMD_STRING) - 1, fd))
-			warrior->name = get_string(fd);
-		else if (!warrior->comment && check_token(COMMENT_CMD_STRING,
+			champ->name = get_string(fd);
+		else if (!champ->comment && check_token(COMMENT_CMD_STRING,
 									sizeof(COMMENT_CMD_STRING) - 1, fd))
-			warrior->comment = get_string(fd);
+			champ->comment = get_string(fd);
 		else
 			error("Syntax error: wrong title", 1);
 	}
-    if (ft_strlen(warrior->name) > PROG_NAME_LENGTH)
+	if (ft_strlen(champ->name) > PROG_NAME_LENGTH)
 		error("Error: name is too big", 0);
-	if (ft_strlen(warrior->comment) > COMMENT_LENGTH)
+	if (ft_strlen(champ->comment) > COMMENT_LENGTH)
 		error("Error: commentary is too big", 0);
 }

@@ -18,7 +18,7 @@ t_champion	*parse_file(int fd)
 	t_opcode	*program;
 	char		*line;
 
-	if (!(warrior = (t_champion *)malloc(sizeof(t_champion))))
+	if (!(champ = (t_champion *)malloc(sizeof(t_champion))))
 		error(strerror(errno), 0);
 	g_cur_line = 1;
 	g_cur_col = 1;
