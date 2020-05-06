@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 13:30:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/04 14:22:17 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/06 11:02:57 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,17 @@ static int	get_fd(char *file_name, int flag)
 
 void		process(char *str, int flag)
 {
-	/*t_champion *champ;
+	t_champion *champ;
 
 	if (flag & F_DISASSEMBLE)
 		disassemble();
 	else
 	{
 		champ = parse_file(get_fd(str, flag));
-		/*assemble(champ);
+		calculate_size(champ)
+		assemble(champ);
 		new_file(champ, str, flag);
 		clean(champ);
-	}*/
+	}
 	return (0)
 }
