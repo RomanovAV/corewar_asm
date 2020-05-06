@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/04 14:13:21 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/06 11:17:00 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ void		error(char *err, int type);
 void		process(char *str, int flag);
 t_champion	*parse_file(int fd);
 void		parse_title(t_warrior *warrior, int fd);
+void		assemble(t_champion *champ);
+void		calculate_size(t_champion *champ);
 
 #endif
