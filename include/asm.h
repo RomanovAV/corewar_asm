@@ -95,5 +95,6 @@ typedef struct	s_champion
 void		error(char *err, int type);
 void		process(char *str, int flag);
 t_champion	*parse_file(int fd);
+void		parse_title(t_warrior *warrior, int fd);
 
 #endif
