@@ -12,6 +12,54 @@
 
 #include "asm.h"
 
+int g_cur_line;
+int g_cur_col;
+
+static t_opcode	*new_element(t_opcode **program)
+{
+	t_opcode *new;
+
+	if (!(new = (t_opcode *)malloc(sizeof(t_opcode))))
+		error(strerror(errno), 0);
+	new->next = NULL;
+	new->labels = NULL;
+	new->type = crw_undef_code;
+	new->size = 0;
+	new->param_code = 0;
+	if ((new->prev = *program))
+		(*program)->next = new;
+	return (new);
+}
+
+void			skip_whitespaces(char **line)
+{
+	while (**line && IS_BLANK(**line))
+	{
+		++(*line);
+		++g_cur_col;
+	}
+}
+
+static void		trim_comment(char *line)
+{
+	while (*line && *line != COMMENT_CHAR && *line != COMMENT_CHAR_ALT)
+		++line;
+	*line = 0;
+}
+
+static void		parse_line(t_opcode **program, char *line)
+{
+	g_cur_col = 1;
+	skip_whitespaces(&line);
+	trim_comment(line);
+	if (!*line)
+		return ;
+	if (!(*program) || (*program)->type != crw_undef_code)
+		*program = new_element(program);
+	// parse_label
+	// parse_opcode
+}
+
 t_champion	*parse_file(int fd)
 {
 	t_champion	*champ;
@@ -23,5 +71,13 @@ t_champion	*parse_file(int fd)
 	g_cur_line = 1;
 	g_cur_col = 1;
 	parse_title(champ, fd);
+	program = NULL;
+	while ((line = read_input(fd)))
+	{
+		parse_line(&program, line);
+		free(line);
+		++g_cur_line;
+	}
+	close(fd);
 	return (champ);
 }
