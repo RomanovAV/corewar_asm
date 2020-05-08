@@ -56,7 +56,7 @@ static void		parse_line(t_opcode **program, char *line)
 		return ;
 	if (!(*program) || (*program)->type != crw_undef_code)
 		*program = new_element(program);
-	// parse_label
+	parse_label(*program, &line);
 	// parse_opcode
 }
 

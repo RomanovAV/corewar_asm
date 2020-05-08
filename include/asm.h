@@ -98,5 +98,6 @@ t_champion	*parse_file(int fd);
 void		parse_title(t_champion *champ, int fd);
 void		assemble(t_champion *champ);
 void		calculate_size(t_champion *champ);
+void		parse_label(t_opcode *opcode, char **line);
 
 #endif
