@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 10:43:41 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/06 11:09:38 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/08 11:10:50 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	find_label(t_opcode *head, char *label_link)
 	ft_printf("Label \"%s\" ", label_link);
 	error("not found", 0);
 	return (0);
+}
 
 static void	set_links_values(t_opcode *prog)
 {

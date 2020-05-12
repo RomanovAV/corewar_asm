@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/12 12:35:31 by root             ###   ########.fr       */
+/*   Updated: 2020/05/12 12:48:16 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void			calculate_size(t_champion *champ);
 void			parse_label(t_opcode *opcode, char **line);
 void			parse_opcode(t_opcode *opcode, char *line);
 t_opcode_param	*parse_parameter(char *line);
+char			*read_input(int fd);
 
 #endif
