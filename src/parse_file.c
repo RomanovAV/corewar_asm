@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 13:52:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/06 12:37:06 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/12 12:23:37 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		parse_line(t_opcode **program, char *line)
 	if (!(*program) || (*program)->type != crw_undef_code)
 		*program = new_element(program);
 	parse_label(*program, &line);
-	// parse_opcode
+	parse_opcode(*program, line);
 }
 
 t_champion	*parse_file(int fd)

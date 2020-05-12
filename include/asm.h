@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/06 12:35:22 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/12 12:35:31 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,14 @@ typedef struct	s_champion
 	size_t			code_size;
 }				t_champion;
 
-void		error(char *err, int type);
-void		process(char *str, int flag);
-t_champion	*parse_file(int fd);
-void		parse_title(t_champion *champ, int fd);
-void		assemble(t_champion *champ);
-void		calculate_size(t_champion *champ);
-void		parse_label(t_opcode *opcode, char **line);
+void			error(char *err, int type);
+void			process(char *str, int flag);
+t_champion		*parse_file(int fd);
+void			parse_title(t_champion *champ, int fd);
+void			assemble(t_champion *champ);
+void			calculate_size(t_champion *champ);
+void			parse_label(t_opcode *opcode, char **line);
+void			parse_opcode(t_opcode *opcode, char *line);
+t_opcode_param	*parse_parameter(char *line);
 
 #endif
