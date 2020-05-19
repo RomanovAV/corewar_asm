@@ -6,13 +6,19 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:54:40 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/02 15:59:52 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:46:35 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FLOATS_H
 # define FLOATS_H
 
+# include <stdarg.h>
+# include <stdint.h>
+# include <wchar.h>
+# include "libft_funcs.h"
+# include "floats.h"
+# include "ft_printf.h"
 typedef union	u_bits
 {
 	long double			l;

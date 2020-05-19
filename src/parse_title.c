@@ -6,11 +6,33 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 20:20:13 by tlorine           #+#    #+#             */
-/*   Updated: 2020/05/06 12:36:23 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 16:01:07 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+int g_cur_line;
+
+static int	get_string_size(int fd)
+{
+	int		size;
+	char	buf;
+
+	size = 0;
+	while (read(fd, &buf, 1) > 0 && buf != '"')
+	{
+		++size;
+		if (buf == '\n')
+			++g_cur_line;
+	}
+	if (buf != '"')
+		error("Syntax error", 1);
+	lseek(fd, -size - 1, SEEK_CUR);
+	if (errno)
+		error(strerror(errno), 0);
+	return (size);
+}
 
 static char	*get_string(int fd)
 {

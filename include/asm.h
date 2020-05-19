@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 15:23:31 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/19 15:23:35 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:47:58 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <errno.h>
 # include "libft.h"
 # include "op.h"
+# include "ft_printf.h"
 
 # define BUFF_SIZE 16
 
@@ -103,5 +104,6 @@ void			parse_opcode(t_opcode *opcode, char *line);
 t_opcode_param	*parse_parameter(char *line);
 char			*read_input(int fd);
 void			skip_whitespaces(char **line);
+void			disassemble(int fd, int fd_out);
 
 #endif

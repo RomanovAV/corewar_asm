@@ -6,11 +6,28 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 13:30:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/06 11:02:57 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 16:05:52 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static int	open_file(char *file_name, int flag)
+{
+	char	*p;
+	int		fd;
+
+	p = file_name;
+	while (*p)
+		++p;
+	if (flag & F_DISASSEMBLE ?
+		p - file_name < 5 || !ft_strequ(p - 4, ".cor")
+		: p - file_name < 3 || !ft_strequ(p - 2, ".s"))
+		error("Wrong filename (need .s or .cor with -d flag)", 0);
+	if ((fd = open(file_name, O_RDONLY)) < 0)
+		error(strerror(errno), 0);
+	return (fd);
+}
 
 static char	*get_new_filename(char *file_name, int flag)
 {
@@ -31,6 +48,29 @@ static char	*get_new_filename(char *file_name, int flag)
 	if (!(new = ft_strjoin(file_name, flag & F_DISASSEMBLE ? ".s" : ".cor")))
 		error(strerror(errno), 0);
 	return (new);
+}
+
+static int	build_file(t_champion *champ, char *name, int flag)
+{
+	char	*new_file;
+	mode_t	mode;
+	int		fd;
+
+	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+	new_file = get_new_filename(name, flag);
+	if ((fd = open(new_file, O_CREAT | O_WRONLY | O_TRUNC, mode)) < 0)
+		error(strerror(errno), 0);
+	if (flag & F_DISASSEMBLE)
+		ft_printf("Writing output champion to %s\n", new_file);
+	else
+	{
+		if (!(write(fd, champ->byte_code, champ->code_size)))
+			error(strerror(errno), 0);
+		close(fd);
+		ft_printf("Writing output program to %s\n", new_file);
+	}
+	free(new_file);
+	return (fd);
 }
 
 static void	cleanup(t_champion *champ)
@@ -62,57 +102,18 @@ static void	cleanup(t_champion *champ)
 	free(champ);
 }
 
-static int	new_file(t_champion *champion, char *name, int flag)
-{
-	char	*new_file;
-	int		fd;
-
-	new_file = get_new_filename(name, flag);
-	if ((fd = open(new_file, O_CREAT | O_WRONLY | O_TRUNC,
-	S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) < 0)
-		error(strerror(errno), 0);
-	if (flag & F_DISASSEMBLE)
-		ft_printf("Writing output champion to %s\n", new_file);
-	else
-	{
-		if (!(write(fd, champion->byte_code, champion->code_size)))
-			error(strerror(errno), 0);
-		close(fd);
-		ft_printf("Writing output program to %s\n", new_file);
-	}
-	free(new_file);
-	return (fd);
-}
-
-static int	get_fd(char *file_name, int flag)
-{
-	char *p;
-	int fd;
-
-	p = file_name;
-	while (*p)
-		++p;
-	if (flag & F_DISASSEMBLE ? p - file_name < 5 || !ft_strequ(p - 4, ".cor")
-	: p - file_name < 3 || !ft_strequ(p - 2, ".s"))
-		error("Wrong filename (need .s or .cor with -d flag)", 0);
-	if ((fd = open(file_name, O_RDONLY)) < 0)
-		error(strerror(errno), 0);
-	return (fd);
-}
-
-void		process(char *str, int flag)
+void		process(char *arg, int flag)
 {
 	t_champion *champ;
 
 	if (flag & F_DISASSEMBLE)
-		disassemble();
+		disassemble(open_file(arg, flag), build_file(NULL, arg, flag));
 	else
 	{
-		champ = parse_file(get_fd(str, flag));
-		calculate_size(champ)
+		champ = parse_file(open_file(arg, flag));
+		calculate_size(champ);
 		assemble(champ);
-		new_file(champ, str, flag);
-		clean(champ);
+		build_file(champ, arg, flag);
+		cleanup(champ);
 	}
-	return (0)
 }

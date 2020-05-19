@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 10:43:41 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/08 11:10:50 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:49:33 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	calculate_size(t_champion *champ)
 		}
 		prog = prog->next;
 	}
-	set_links_value(champ->program);
+	set_links_values(champ->program);
 }

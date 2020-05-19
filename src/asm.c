@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 13:27:19 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/06 11:02:50 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:42:22 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int main(int ac, char **av)
 	index = 1;
 	while (index < ac)
 	{
-		flag = av[1][0] == "-" ? get_flag(av[index++]) : 0;
+		flag = av[index][0] == '-' ? get_flag(av[index++]) : 0;
 		if (index == ac)
 			error("file not specified", 0);
-		pricess(av[index], flag);
+		process(av[index], flag);
 		++index;
 	}
 	return (0);
