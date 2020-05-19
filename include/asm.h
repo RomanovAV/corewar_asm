@@ -102,5 +102,6 @@ void			parse_label(t_opcode *opcode, char **line);
 void			parse_opcode(t_opcode *opcode, char *line);
 t_opcode_param	*parse_parameter(char *line);
 char			*read_input(int fd);
+void			skip_whitespaces(char **line);
 
 #endif

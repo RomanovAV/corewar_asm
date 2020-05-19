@@ -78,6 +78,11 @@ t_champion	*parse_file(int fd)
 		free(line);
 		++g_cur_line;
 	}
+	if (!program)
+		error("Error: empty champion", 0);
+	while (program->prev)
+		program = program->prev;
+	champ->program = program;
 	close(fd);
 	return (champ);
 }
