@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/12 11:22:52 by dsandshr         ###   ########.fr       */
+/*   Created: 2020/05/19 15:23:31 by dsandshr          #+#    #+#             */
+/*   Updated: 2020/05/19 15:23:35 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ typedef struct	s_champion
 	size_t			code_size;
 }				t_champion;
 
-void		error(char *err, int type);
-void		process(char *str, int flag);
-t_champion	*parse_file(int fd);
-void		parse_title(t_champion *champ, int fd);
-void		assemble(t_champion *champ);
-void		calculate_size(t_champion *champ);
-void		parse_label(t_opcode *opcode, char **line);
-char		*read_input(int fd);
-void		disassemble(int fd, int fd_out);
+void			error(char *err, int type);
+void			process(char *str, int flag);
+t_champion		*parse_file(int fd);
+void			parse_title(t_champion *champ, int fd);
+void			assemble(t_champion *champ);
+void			calculate_size(t_champion *champ);
+void			parse_label(t_opcode *opcode, char **line);
+void			parse_opcode(t_opcode *opcode, char *line);
+t_opcode_param	*parse_parameter(char *line);
+char			*read_input(int fd);
+void			skip_whitespaces(char **line);
 
 #endif
