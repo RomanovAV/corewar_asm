@@ -6,7 +6,7 @@
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/02 17:13:09 by dsandshr          #+#    #+#              #
-#    Updated: 2020/05/08 11:02:32 by dsandshr         ###   ########.fr        #
+#    Updated: 2020/05/12 11:22:20 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC_ASM := asm.c\
 			parse_title.c\
 			parse_label.c\
 			calculate.c\
-			assemble.c
+			assemble.c\
+			disasm.c
 
 OBJ_ASM := $(SRC_ASM:.c=.o)
 

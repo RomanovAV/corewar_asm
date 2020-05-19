@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 16:46:49 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/08 11:11:08 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/12 11:22:52 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void		assemble(t_champion *champ);
 void		calculate_size(t_champion *champ);
 void		parse_label(t_opcode *opcode, char **line);
 char		*read_input(int fd);
+void		disassemble(int fd, int fd_out);
 
 #endif
