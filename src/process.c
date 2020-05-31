@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 13:30:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2020/05/19 16:05:52 by dsandshr         ###   ########.fr       */
+/*   Updated: 2020/05/31 15:49:32 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	open_file(char *file_name, int flag)
 	if (flag & F_DISASSEMBLE ?
 		p - file_name < 5 || !ft_strequ(p - 4, ".cor")
 		: p - file_name < 3 || !ft_strequ(p - 2, ".s"))
-		error("Wrong filename (need .s or .cor with -d flag)", 0);
+		error("Wrong filename (need .cor with -d flag)", 0);
 	if ((fd = open(file_name, O_RDONLY)) < 0)
 		error(strerror(errno), 0);
 	return (fd);
@@ -107,7 +107,7 @@ void		process(char *arg, int flag)
 	t_champion *champ;
 
 	if (flag & F_DISASSEMBLE)
-		disassemble(open_file(arg, flag), build_file(NULL, arg, flag));
+		disassemble(build_file(NULL, arg, flag), open_file(arg, flag));
 	else
 	{
 		champ = parse_file(open_file(arg, flag));

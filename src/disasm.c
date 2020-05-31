@@ -83,7 +83,7 @@ static void	print_code(int fd, int fd_out)
 	}
 }
 
-void		disassemble(int fd, int fd_out)
+void		disassemble(int fd_out, int fd)
 {
 	if (get_int(fd, sizeof(int)) != COREWAR_EXEC_MAGIC)
 		error("Error: wrong magic number", 0);
