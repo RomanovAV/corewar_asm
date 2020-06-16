@@ -45,7 +45,15 @@ vpath %.o $(OBJ_DIR)
 vpath %.h $(HEADERS_DIR)
 vpath %.a $(LFT_DIR) $(LFT_PRINTF_DIR)
 
-all: $(NAME)
+.PHONY: all printf libft clean fclean re
+
+all: libft printf $(NAME)
+
+libft:
+	@make -C ./lib/libft
+
+printf:
+	@make -C ./lib/ft_printf
 
 $(NAME): $(OBJ_ASM)
 	@$(CC) $(addprefix $(OBJ_DIR)/, $(OBJ_ASM)) $(INCLUDE) -lft -L $(LFT_DIR) -lftprintf -L $(LFT_PRINTF_DIR) -o $@
@@ -58,8 +66,12 @@ $(OBJ_ASM): %.o: %.c $(HEADERS)
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@make -C ./lib/libft clean
+	@make -C ./lib/ft_printf clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@make -C ./lib/libft fclean
+	@make -C ./lib/ft_printf fclean
 
 re: fclean all
